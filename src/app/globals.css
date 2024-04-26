@@ -6,3 +6,12 @@
   margin: 0;
   padding: 0;
 }
+
+li:hover > span {
+  transform: scaleX(1);
+}
+
+/* leaflet */
+.leaflet-container {
+  height: 100%;
+}
