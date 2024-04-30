@@ -1,12 +1,7 @@
 import React from "react";
 
-const layout = ({ modal, children }) => {
-  return (
-    <>
-      {modal}
-      {children}
-    </>
-  );
+const layout = ({ children }) => {
+  return <>{children}</>;
 };
 
 export default layout;

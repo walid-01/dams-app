@@ -20,7 +20,7 @@ const LeafletMap = () => {
   function getColorByClass(quality) {
     switch (quality) {
       case "Poor":
-        return "text-red-400"; // or any other color you prefer
+        return "text-red-400";
       case "Marginal":
         return "text-orange-400";
       case "Medium":
@@ -41,7 +41,7 @@ const LeafletMap = () => {
   const [minWQI, setMinWQI] = useState("");
   const [maxWQI, setMaxWQI] = useState("");
   const [minOrder, setMinOrder] = useState("");
-  const [maxOrder, setMaxOrder] = useState(""); // Problem: not all dams exist out of 47 and orders are not correct
+  const [maxOrder, setMaxOrder] = useState("");
 
   useEffect(() => {
     const filtered = dams.filter((item) => {
@@ -153,7 +153,7 @@ const LeafletMap = () => {
               draggable={false}
             >
               <Popup>
-                <Link href={`/dam/${dam.id}`}>
+                <Link href={`/dams/${dam.id}`}>
                   <h1 className="text-black text-lg">{dam.name}</h1>
                   <p className="text-black">
                     <span className="font-bold">Quality: </span>
