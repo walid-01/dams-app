@@ -39,7 +39,7 @@ const LeafletMap = () => {
     }
   }
 
-  const [isFilterOpen, setIsFilterOpen] = useState(false);
+  const [isFilterOpen, setIsFilterOpen] = useState(true);
 
   const [filteredData, setFilteredData] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
@@ -199,123 +199,150 @@ const LeafletMap = () => {
                   className="px-4 py-2 rounded-sm"
                 />
               </div>
-              <div className="flex gap-2 items-center">
-                <label>
-                  <input
-                    type="checkbox"
-                    checked={selectedRegions.includes("East")}
-                    onChange={() => handleRegionChange("East")}
-                  />
-                  East
-                </label>
-                <label>
-                  <input
-                    type="checkbox"
-                    checked={selectedRegions.includes("West")}
-                    onChange={() => handleRegionChange("West")}
-                  />
-                  West
-                </label>
-                <label>
-                  <input
-                    type="checkbox"
-                    checked={selectedRegions.includes("Center")}
-                    onChange={() => handleRegionChange("Center")}
-                  />
-                  Center
-                </label>
+              <div>
+                <p className="text-lg">Region</p>
+                <div className="flex gap-6 items-center">
+                  <label>
+                    <input
+                      type="checkbox"
+                      checked={selectedRegions.includes("East")}
+                      onChange={() => handleRegionChange("East")}
+                      className="mr-2"
+                    />
+                    East
+                  </label>
+                  <label>
+                    <input
+                      type="checkbox"
+                      checked={selectedRegions.includes("West")}
+                      onChange={() => handleRegionChange("West")}
+                      className="mr-2"
+                    />
+                    West
+                  </label>
+                  <label>
+                    <input
+                      type="checkbox"
+                      checked={selectedRegions.includes("Center")}
+                      onChange={() => handleRegionChange("Center")}
+                      className="mr-2"
+                    />
+                    Center
+                  </label>
+                </div>
               </div>
-              <div className="flex gap-2 items-center">
-                <label>
-                  <input
-                    type="checkbox"
-                    checked={selectedUsages.includes("AEP")}
-                    onChange={() => handleUsageChange("AEP")}
-                  />
-                  AEP
-                </label>
-                <label>
-                  <input
-                    type="checkbox"
-                    checked={selectedUsages.includes("IRR")}
-                    onChange={() => handleUsageChange("IRR")}
-                  />
-                  IRR
-                </label>
-                <label>
-                  <input
-                    type="checkbox"
-                    checked={selectedUsages.includes("TRANS")}
-                    onChange={() => handleUsageChange("TRANS")}
-                  />
-                  TRANS
-                </label>
-                <label>
-                  <input
-                    type="checkbox"
-                    checked={selectedUsages.includes("AEP-IRR")}
-                    onChange={() => handleUsageChange("AEP-IRR")}
-                  />
-                  AEP-IRR
-                </label>
-                <label>
-                  <input
-                    type="checkbox"
-                    checked={selectedUsages.includes("TRANS-IRR")}
-                    onChange={() => handleUsageChange("TRANS-IRR")}
-                  />
-                  TRANS-IRR
-                </label>
-                <label>
-                  <input
-                    type="checkbox"
-                    checked={selectedUsages.includes("AEP-IRR-AEI")}
-                    onChange={() => handleUsageChange("AEP-IRR-AEI")}
-                  />
-                  AEP-IRR-AEI
-                </label>
+              <div>
+                <p>Usage</p>
+                <div>
+                  <div className="flex gap-6 items-center">
+                    <label>
+                      <input
+                        type="checkbox"
+                        checked={selectedUsages.includes("AEP")}
+                        onChange={() => handleUsageChange("AEP")}
+                        className="mr-2"
+                      />
+                      AEP
+                    </label>
+                    <label>
+                      <input
+                        type="checkbox"
+                        checked={selectedUsages.includes("IRR")}
+                        onChange={() => handleUsageChange("IRR")}
+                        className="mr-2"
+                      />
+                      IRR
+                    </label>
+                    <label>
+                      <input
+                        type="checkbox"
+                        checked={selectedUsages.includes("TRANS")}
+                        onChange={() => handleUsageChange("TRANS")}
+                        className="mr-2"
+                      />
+                      TRANS
+                    </label>
+                  </div>
+                  <div className="flex gap-6 items-center">
+                    <label>
+                      <input
+                        type="checkbox"
+                        checked={selectedUsages.includes("AEP-IRR")}
+                        onChange={() => handleUsageChange("AEP-IRR")}
+                        className="mr-2"
+                      />
+                      AEP-IRR
+                    </label>
+                    <label>
+                      <input
+                        type="checkbox"
+                        checked={selectedUsages.includes("TRANS-IRR")}
+                        onChange={() => handleUsageChange("TRANS-IRR")}
+                        className="mr-2"
+                      />
+                      TRANS-IRR
+                    </label>
+                    <label>
+                      <input
+                        type="checkbox"
+                        checked={selectedUsages.includes("AEP-IRR-AEI")}
+                        onChange={() => handleUsageChange("AEP-IRR-AEI")}
+                        className="mr-2"
+                      />
+                      AEP-IRR-AEI
+                    </label>
+                  </div>
+                </div>
               </div>
-              <div className="flex gap-2 items-center">
-                <label>
-                  <input
-                    type="checkbox"
-                    checked={selectedClasses.includes("Poor")}
-                    onChange={() => handleClassChange("Poor")}
-                  />
-                  Poor
-                </label>
-                <label>
-                  <input
-                    type="checkbox"
-                    checked={selectedClasses.includes("Marginal")}
-                    onChange={() => handleClassChange("Marginal")}
-                  />
-                  Marginal
-                </label>
-                <label>
-                  <input
-                    type="checkbox"
-                    checked={selectedClasses.includes("Medium")}
-                    onChange={() => handleClassChange("Medium")}
-                  />
-                  Medium
-                </label>
-                <label>
-                  <input
-                    type="checkbox"
-                    checked={selectedClasses.includes("Good")}
-                    onChange={() => handleClassChange("Good")}
-                  />
-                  Good
-                </label>
-                <label>
-                  <input
-                    type="checkbox"
-                    checked={selectedClasses.includes("Excellent")}
-                    onChange={() => handleClassChange("Excellent")}
-                  />
-                  Excellent
-                </label>
+              <div>
+                <p>Class</p>
+                <div className="flex gap-4 items-center">
+                  <label>
+                    <input
+                      type="checkbox"
+                      checked={selectedClasses.includes("Poor")}
+                      onChange={() => handleClassChange("Poor")}
+                      className="mr-1"
+                    />
+                    Poor
+                  </label>
+                  <label>
+                    <input
+                      type="checkbox"
+                      checked={selectedClasses.includes("Marginal")}
+                      onChange={() => handleClassChange("Marginal")}
+                      className="mr-1"
+                    />
+                    Marginal
+                  </label>
+                  <label>
+                    <input
+                      type="checkbox"
+                      checked={selectedClasses.includes("Medium")}
+                      onChange={() => handleClassChange("Medium")}
+                      className="mr-1"
+                    />
+                    Medium
+                  </label>
+                  <label>
+                    <input
+                      type="checkbox"
+                      checked={selectedClasses.includes("Good")}
+                      onChange={() => handleClassChange("Good")}
+                      className="mr-1"
+                    />
+                    Good
+                  </label>
+                  <label>
+                    <input
+                      type="checkbox"
+                      checked={selectedClasses.includes("Excellent")}
+                      onChange={() => handleClassChange("Excellent")}
+                      className="mr-1"
+                    />
+                    Excellent
+                  </label>
+                </div>
               </div>
               <p>
                 <span className="font-semibold">Showing : </span>
