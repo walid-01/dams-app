@@ -31,7 +31,6 @@ const DamTable = () => {
 
   return (
     <div>
-      {fetchError && <p>{fetchError}</p>}
       {dams && (
         <table>
           <thead>

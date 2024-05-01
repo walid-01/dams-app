@@ -13,11 +13,11 @@ export default function Modal({ children }) {
 
   const onClick = useCallback(
     (e) => {
-      if (e.target === overlay.current || e.target === wrapper.current) {
+      if (e.target === overlay.current) {
         if (onDismiss) onDismiss();
       }
     },
-    [onDismiss, overlay, wrapper]
+    [onDismiss, overlay]
   );
 
   const onCloseButtonClick = useCallback(
@@ -35,6 +35,10 @@ export default function Modal({ children }) {
     [onDismiss]
   );
 
+  const refreshPage = () => {
+    window.location.reload();
+  };
+
   useEffect(() => {
     document.addEventListener("keydown", onKeyDown);
     return () => document.removeEventListener("keydown", onKeyDown);
@@ -43,15 +47,21 @@ export default function Modal({ children }) {
   return (
     <div
       ref={overlay}
-      className="fixed z-50 left-0 right-0 top-0 bottom-0 mx-auto bg-black/30"
+      className="fixed z-40 left-0 right-0 top-0 bottom-0 mx-auto bg-black/30 w-screen"
       onClick={onClick}
     >
       <div
         ref={wrapper}
-        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 border-2 border-sky-500 p-10 bg-white"
+        className="z-50 absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 border-2 border-sky-500 px-16 pb-5 pt-10 bg-white w-3/5"
       >
         {children}
-        <div className="w-full flex justify-end">
+        <div className="w-full flex justify-end gap-4">
+          <button
+            onClick={refreshPage}
+            className="z-50 bg-sky-500 text-white px-4 p-2 rounded-full"
+          >
+            View More Details
+          </button>
           <button
             className="z-50 bg-red-500 text-white px-4 py-2 rounded-full"
             onClick={onCloseButtonClick}
