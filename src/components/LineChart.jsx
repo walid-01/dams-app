@@ -1,12 +1,27 @@
 import React, { useEffect, useRef, useState } from "react";
 import * as d3 from "d3";
 
-const LineChart = ({ data, months, w = 800, h = 400 }) => {
+const LineChart = ({ data, months, attribute, w = 800, h = 400 }) => {
   const svgRef = useRef();
   const [hoveredValue, setHoveredValue] = useState(null);
 
   useEffect(() => {
     if (!data || !months || data.length !== months.length) return;
+
+    const getUnit = (attribute) => {
+      switch (attribute) {
+        case "volume":
+          return "Hm3";
+        case "ph":
+          return "";
+        // case "rs": return <></>;
+        // case "o2d": return "%";
+        // case "dbo5": return <></>;
+        // case "dco": return <></>;
+        default:
+          return "mg/L";
+      }
+    };
 
     const margin = { top: 20, right: 30, bottom: 50, left: 60 };
     const width = w - margin.left - margin.right;
@@ -82,12 +97,21 @@ const LineChart = ({ data, months, w = 800, h = 400 }) => {
         const mouseX = d3.pointer(event)[0];
         const index = Math.floor(mouseX / (width / months.length));
         const yValue = data[index];
-        setHoveredValue(yValue);
-        tooltip.attr(
-          "transform",
-          `translate(${x(months[index]) + x.bandwidth() / 2},${y(yValue)})`
-        );
-        tooltip.select("text").text(yValue);
+
+        // Add a conditional check to ensure yValue is not undefined
+        if (typeof yValue !== "undefined") {
+          setHoveredValue(yValue);
+          tooltip.attr(
+            "transform",
+            `translate(${x(months[index]) + x.bandwidth() / 2},${y(yValue)})`
+          );
+          tooltip
+            .select("text")
+            .text(yValue.toString() + " " + getUnit(attribute));
+        } else {
+          // Hide the tooltip if there's no value
+          tooltip.style("display", "none");
+        }
       });
   }, [data, months]);
 

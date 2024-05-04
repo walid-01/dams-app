@@ -1,6 +1,6 @@
 "use client";
 
-import DamTable from "@/components/DamTable";
+import DamTable from "@/components/DamsTable";
 
 export default function Home() {
   return (

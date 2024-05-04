@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import supabase from "@/config/supabase/supabase";
+import SortableHeader from "./SortableHeader";
 
 const DamTable = () => {
   const [fetchError, setFetchError] = useState(null);
@@ -77,7 +78,7 @@ const DamTable = () => {
               />
               <SortableHeader
                 column="wqi"
-                title="WQI"
+                title="WQI (%)"
                 sortColumn={sortColumn}
                 sortDirection={sortDirection}
                 handleSort={handleSort}
@@ -126,7 +127,11 @@ const DamTable = () => {
               />
               <SortableHeader
                 column="capacity"
-                title="Capacity"
+                title={
+                  <>
+                    Capacity (Hm<sup>3</sup>)
+                  </>
+                }
                 sortColumn={sortColumn}
                 sortDirection={sortDirection}
                 handleSort={handleSort}
@@ -157,40 +162,6 @@ const DamTable = () => {
         </table>
       )}
     </div>
-  );
-};
-
-const SortableHeader = ({
-  column,
-  title,
-  sortColumn,
-  sortDirection,
-  handleSort,
-}) => {
-  const handleClick = () => {
-    handleSort(column);
-  };
-
-  return (
-    <th
-      className="px-4 py-2 cursor-pointer"
-      onClick={handleClick}
-      style={{ position: "relative" }}
-    >
-      {title}
-      {sortColumn === column && (
-        <span
-          style={{
-            position: "absolute",
-            marginLeft: "5px",
-            top: "50%",
-            transform: "translateY(-50%)",
-          }}
-        >
-          {sortDirection === "asc" ? "▲" : "▼"}
-        </span>
-      )}
-    </th>
   );
 };
 
