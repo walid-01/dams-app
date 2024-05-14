@@ -1,4 +1,4 @@
-import LineChart from "@/components/LineChart";
+import LineChart from "@/components/charts/LineChart";
 import { formatDate } from "@/utils/formatDate";
 import { useState } from "react";
 
@@ -16,10 +16,15 @@ const ChartsList = ({ months }) => {
     <div>
       {Object.keys(months[0])
         .filter((attribute) => attribute !== "dam_id" && attribute !== "month")
-        .map((attribute) => (
-          <div key={attribute} className="mb-10">
+        .map((attribute, index, array) => (
+          <div
+            className={`bg-zinc-50 ${
+              index !== array.length - 1 ? "border-b" : "" // Apply border except for the last item
+            }`}
+            key={attribute}
+          >
             <div
-              className="flex items-center cursor-pointer"
+              className="flex items-center cursor-pointer transition-colors duration-300 hover:bg-zinc-200 px-4 py-4"
               onClick={() => toggleChart(attribute)}
             >
               <svg

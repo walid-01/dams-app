@@ -4,10 +4,10 @@ import supabase from "@/config/supabase/supabase";
 import { useEffect, useState } from "react";
 import { DamInfo } from "@/components/DamInfo";
 import dynamic from "next/dynamic";
-import ChartsList from "@/components/ChartsList";
+import ChartsTabs from "@/components/DamInfoModes";
 
 const page = ({ params }) => {
-  const DynamicMap = dynamic(() => import("@/components/DamLocation"), {
+  const DynamicMap = dynamic(() => import("@/components/maps/DamLocation"), {
     ssr: false,
   });
 
@@ -61,7 +61,7 @@ const page = ({ params }) => {
   }
 
   return (
-    <div className="w-3/4 m-auto h-full pt-20">
+    <div className="w-11/12 m-auto h-full pt-20">
       {dam && (
         <>
           <DamInfo dam={dam} />
@@ -72,7 +72,7 @@ const page = ({ params }) => {
           />
         </>
       )}
-      {months && <ChartsList months={months} />}
+      {months && <ChartsTabs months={months} />}
     </div>
   );
 };

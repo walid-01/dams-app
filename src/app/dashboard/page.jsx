@@ -3,7 +3,7 @@
 import dynamic from "next/dynamic";
 
 const Dashboard = () => {
-  const DynamicMap = dynamic(() => import("@/components/LeafletMap"), {
+  const DynamicMap = dynamic(() => import("@/components/maps/LeafletMap"), {
     ssr: false,
   });
 

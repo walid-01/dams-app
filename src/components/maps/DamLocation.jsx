@@ -16,7 +16,7 @@ const DamLocation = ({ longitude, latitude, name }) => {
 
   const recenterMap = () => {
     if (mapRef.current) {
-      mapRef.current.setView([latitude, longitude], 10);
+      mapRef.current.setView([latitude, longitude], 8);
     }
   };
 

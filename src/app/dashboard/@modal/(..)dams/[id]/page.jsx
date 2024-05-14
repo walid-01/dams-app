@@ -3,7 +3,7 @@
 import Modal from "@/components/modal";
 import supabase from "@/config/supabase/supabase";
 import { useEffect, useState } from "react";
-import LineChart from "@/components/LineChart";
+import LineChart from "@/components/charts/LineChart";
 import { formatDate } from "@/utils/formatDate";
 import { DamInfo } from "@/components/DamInfo";
 

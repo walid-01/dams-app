@@ -1,11 +1,11 @@
 "use client";
 
-import DamTable from "@/components/DamsTable";
+import DamsTable from "@/components/tables/DamsTable";
 
 export default function Home() {
   return (
     <div>
-      <DamTable />
+      <DamsTable />
     </div>
   );
 }

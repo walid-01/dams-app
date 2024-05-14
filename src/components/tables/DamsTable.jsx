@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import supabase from "@/config/supabase/supabase";
 import SortableHeader from "./SortableHeader";
 
-const DamTable = () => {
+const DamsTable = () => {
   const [fetchError, setFetchError] = useState(null);
   const [dams, setDams] = useState(null);
   const [sortColumn, setSortColumn] = useState(null);
@@ -66,7 +66,7 @@ const DamTable = () => {
   return (
     <div>
       {sortedDams && (
-        <table>
+        <table className="table">
           <thead>
             <tr>
               <SortableHeader
@@ -145,7 +145,7 @@ const DamTable = () => {
                 onClick={() => {
                   window.location.href = `/dams/${dam.id}`;
                 }}
-                className="border-2 hover:border-gray-400 hover:cursor-pointer"
+                className="border-2 hover:bg-gray-100 hover:cursor-pointer"
               >
                 <td className="px-4 py-2">{dam.id}</td>
                 <td className="px-4 py-2">{dam.wqi}</td>
@@ -165,4 +165,4 @@ const DamTable = () => {
   );
 };
 
-export default DamTable;
+export default DamsTable;
