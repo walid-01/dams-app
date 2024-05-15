@@ -7,7 +7,7 @@ import LineChart from "@/components/charts/LineChart";
 import { formatDate } from "@/utils/formatDate";
 import { DamInfo } from "@/components/DamInfo";
 
-const page = ({ params }) => {
+const DamByIdModal = ({ params }) => {
   const damId = params.id;
   const [fetchError, setFetchError] = useState(null);
   const [dam, setDam] = useState(null);
@@ -102,4 +102,4 @@ const page = ({ params }) => {
   );
 };
 
-export default page;
+export default DamByIdModal;

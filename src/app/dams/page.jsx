@@ -2,10 +2,12 @@
 
 import DamsTable from "@/components/tables/DamsTable";
 
-export default function Home() {
+const Dams = () => {
   return (
     <div>
       <DamsTable />
     </div>
   );
-}
+};
+
+export default Dams;

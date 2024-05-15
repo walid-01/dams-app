@@ -1,6 +1,6 @@
 import React from "react";
 
-const layout = ({ children, modal }) => {
+const DashboardLayout = ({ children, modal }) => {
   return (
     <>
       {children}
@@ -9,4 +9,4 @@ const layout = ({ children, modal }) => {
   );
 };
 
-export default layout;
+export default DashboardLayout;

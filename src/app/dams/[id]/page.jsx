@@ -6,7 +6,7 @@ import { DamInfo } from "@/components/DamInfo";
 import dynamic from "next/dynamic";
 import ChartsTabs from "@/components/DamInfoModes";
 
-const page = ({ params }) => {
+const DamById = ({ params }) => {
   const DynamicMap = dynamic(() => import("@/components/maps/DamLocation"), {
     ssr: false,
   });
@@ -77,4 +77,4 @@ const page = ({ params }) => {
   );
 };
 
-export default page;
+export default DamById;
