@@ -1,6 +1,6 @@
 "use client";
 
-import Modal from "@/components/modal";
+import Modal from "@/components/Modal";
 import supabase from "@/config/supabase/supabase";
 import { useEffect, useState } from "react";
 import LineChart from "@/components/charts/LineChart";
