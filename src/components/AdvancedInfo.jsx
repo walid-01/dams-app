@@ -71,7 +71,7 @@ const AdvancedInfo = ({ months }) => {
       unit: "mg/L",
     },
   ]);
-  const [viewMode, setViewMode] = useState("table");
+  const [viewMode, setViewMode] = useState("graph");
 
   // useEffect(() => {
   //   console.log(parameters);
@@ -116,6 +116,9 @@ const AdvancedInfo = ({ months }) => {
           >
             Unselect All
           </button>
+          <select className="text-sky-500 border px-2 py-1 rounded-lg hover:bg-sky-500 hover:text-white transition">
+            <option value="2019">2019</option>
+          </select>
         </div>
         <table className="table">
           <thead>
