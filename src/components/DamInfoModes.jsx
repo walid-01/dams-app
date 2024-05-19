@@ -6,7 +6,7 @@ import AdvancedInfo from "@/components/AdvancedInfo";
 import DamComparison from "./DamComparison";
 
 const DamInfoModes = ({ months, damName }) => {
-  const [tab, setTab] = useState("comparison");
+  const [tab, setTab] = useState("simple");
 
   return (
     <div className="mb-10">

@@ -135,29 +135,31 @@ const DamComparison = ({ months, damName }) => {
                     </tr>
                   </thead>
                   <tbody>
-                    {dams.map((dam) => (
-                      <tr
-                        key={dam.id}
-                        onClick={() =>
-                          selectedComparisonDam !== dam.id
-                            ? setSelectedComparisonDam(dam.id)
-                            : setSelectedComparisonDam(null)
-                        } // Select on click
-                        className={`hover:bg-gray-100 ${
-                          selectedComparisonDam === dam.id ? "bg-gray-50" : ""
-                        } hover:cursor-pointer`}
-                      >
-                        <td className="flex justify-between">
-                          <p>{`${dam.id} - ${dam.name}`}</p>
-                          <input
-                            type="checkbox"
-                            className="checkbox hover:cursor-pointer"
-                            checked={selectedComparisonDam === dam.id}
-                            readOnly
-                          />
-                        </td>
-                      </tr>
-                    ))}
+                    {dams
+                      .filter((dam) => dam.name !== damName)
+                      .map((dam) => (
+                        <tr
+                          key={dam.id}
+                          onClick={() =>
+                            selectedComparisonDam !== dam.id
+                              ? setSelectedComparisonDam(dam.id)
+                              : setSelectedComparisonDam(null)
+                          } // Select on click
+                          className={`hover:bg-gray-100 ${
+                            selectedComparisonDam === dam.id ? "bg-gray-50" : ""
+                          } hover:cursor-pointer`}
+                        >
+                          <td className="flex justify-between">
+                            <p>{`${dam.id} - ${dam.name}`}</p>
+                            <input
+                              type="checkbox"
+                              className="checkbox hover:cursor-pointer"
+                              checked={selectedComparisonDam === dam.id}
+                              readOnly
+                            />
+                          </td>
+                        </tr>
+                      ))}
                   </tbody>
                 </table>
               ))}
