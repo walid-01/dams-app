@@ -1,16 +1,17 @@
-import React, { useEffect, useState } from "react";
-import supabase from "@/config/supabase/supabase";
+import { useEffect, useState } from "react";
+import useDam from "@/hooks/useDam";
 import SortableHeader from "./SortableHeader";
 
 const DamsTable = () => {
+  const { fetchDams } = useDam();
   const [fetchError, setFetchError] = useState(null);
   const [dams, setDams] = useState(null);
   const [sortColumn, setSortColumn] = useState(null);
   const [sortDirection, setSortDirection] = useState("asc");
 
   useEffect(() => {
-    const fetchDams = async () => {
-      const { data, error } = await supabase.from("Dams").select();
+    const fetchData = async () => {
+      const { data, error } = await fetchDams();
 
       if (error) {
         setFetchError(error);
@@ -21,8 +22,8 @@ const DamsTable = () => {
       setDams(data);
     };
 
-    fetchDams();
-  }, []);
+    fetchData();
+  }, [fetchDams]);
 
   const handleSort = (column) => {
     if (column === sortColumn) {

@@ -1,81 +1,11 @@
 import { useEffect, useState } from "react";
 import ComparisonLineChart from "./charts/ComparisonLineChart";
 import ComparisonTable from "./tables/ComparisonTable";
+import parameters from "@/data/parameters.json";
 
 const AdvancedInfo = ({ months }) => {
   const [selectedRows, setSelectedRows] = useState([]);
-  const [parameters, setParameters] = useState([
-    {
-      id: "volume",
-      name: "Volume",
-      shortname: "Volume",
-      unit: "Hm3",
-    },
-    {
-      id: "ph",
-      name: "Power of Hydrogen",
-      shortname: "ph",
-    },
-    {
-      id: "rs",
-      name: "Total Solid",
-      shortname: "TS",
-      unit: "mg/L",
-    },
-    {
-      id: "o2d",
-      name: "Disolved Oxygen",
-      shortname: "DO",
-      unit: "%",
-    },
-    {
-      id: "no3",
-      name: "Nitrate",
-      shortname: "NO3-",
-      unit: "mg/L",
-    },
-    {
-      id: "no2",
-      name: "Nitrite",
-      shortname: "NO2-",
-      unit: "mg/L",
-    },
-    {
-      id: "nh4",
-      name: "Ammonia",
-      shortname: "NH4+",
-      unit: "mg/L",
-    },
-    {
-      id: "po4",
-      name: "Phosphate",
-      shortname: "PO4-3",
-      unit: "mg/L",
-    },
-    {
-      id: "dbo5",
-      name: "Biochemical Oxygen Demand",
-      shortname: "BOD",
-      unit: "mg/L",
-    },
-    {
-      id: "dco",
-      name: "Chemical Oxygen Demand",
-      shortname: "COD",
-      unit: "mg/L",
-    },
-    {
-      id: "mo",
-      name: "Organic Matter",
-      shortname: "OM",
-      unit: "mg/L",
-    },
-  ]);
   const [viewMode, setViewMode] = useState("graph");
-
-  // useEffect(() => {
-  //   console.log(parameters);
-  // }, [parameters]);
 
   const handleRowClick = (paramId) => {
     if (selectedRows.includes(paramId)) {

@@ -4,7 +4,7 @@ import supabase from "@/config/supabase/supabase";
 import { useEffect, useState } from "react";
 import { DamInfo } from "@/components/DamInfo";
 import dynamic from "next/dynamic";
-import ChartsTabs from "@/components/DamInfoModes";
+import DamInfoModes from "@/components/DamInfoModes";
 
 const DamById = ({ params }) => {
   const DynamicMap = dynamic(() => import("@/components/maps/DamLocation"), {
@@ -48,7 +48,7 @@ const DamById = ({ params }) => {
         return;
       }
       setFetchError(null);
-      console.log(data);
+      // console.log(data);
       setMonths(data);
     };
 
@@ -70,9 +70,9 @@ const DamById = ({ params }) => {
             latitude={dam.latitude}
             name={dam.name}
           />
+          {months && <DamInfoModes months={months} damName={dam.name} />}
         </>
       )}
-      {months && <ChartsTabs months={months} />}
     </div>
   );
 };

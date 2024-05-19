@@ -5,11 +5,11 @@ import ChartsList from "@/components/tables/ChartsList";
 import AdvancedInfo from "@/components/AdvancedInfo";
 import DamComparison from "./DamComparison";
 
-const DamInfoModes = ({ months }) => {
-  const [tab, setTab] = useState("simple");
+const DamInfoModes = ({ months, damName }) => {
+  const [tab, setTab] = useState("comparison");
 
   return (
-    <div>
+    <div className="mb-10">
       <div className="flex gap-3">
         <button
           className={`${
@@ -51,7 +51,7 @@ const DamInfoModes = ({ months }) => {
         ) : tab === "advanced" ? (
           <AdvancedInfo months={months} />
         ) : (
-          <DamComparison months={months} />
+          <DamComparison months={months} damName={damName} />
         )}
       </div>
     </div>
