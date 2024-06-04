@@ -30,7 +30,7 @@ export default function Home() {
             <h1 className="text-3xl text-gray-700">One Platform.</h1>
           </div>
           <p className="font-medium text-gray-700">
-            The world's most advanced water organizations trust Aquatic
+            The world&aposs most advanced water organizations trust Aquatic
             Informatics to achieve higher data integrity, defensibility,
             compliance, timeliness, and reporting.
           </p>
@@ -175,8 +175,8 @@ export default function Home() {
               </label>
               <p className="text-xs">
                 By submitting, I confirm that I have reviewed and agree with the
-                Aquatic Informatics' Privacy Policy, including my personal data
-                privacy choices as outlined in the “Your Privacy Choices”
+                Aquatic Informatics&apos Privacy Policy, including my personal
+                data privacy choices as outlined in the “Your Privacy Choices”
                 section.
               </p>
             </div>
