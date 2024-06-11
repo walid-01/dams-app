@@ -8,7 +8,7 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en">
+    <html lang="en" className="scroll-smooth">
       <link rel="icon" href="/logo-sm-bg-white.png" sizes="any" />
       <body className="h-screen flex flex-col">
         <Navbar />

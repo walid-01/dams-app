@@ -32,12 +32,13 @@ const Navbar = () => {
               <span className="absolute w-full h-0.5 bg-white bottom-0 left-0 transform scale-x-0 transition-transform group-hover:scale-x-100"></span>
             </li>
           </ul>
-          <button
+          <Link
+            href="/#consultation-form"
             type="button"
             className="bg-white text-black px-6 py-3 rounded-full shadow-lg font-medium transition-colors hover:bg-sky-200"
           >
             BOOK CONSULTATION
-          </button>
+          </Link>
         </div>
       </div>
     </nav>

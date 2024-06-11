@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useState } from "react";
 
 export default function Home() {
@@ -30,16 +31,17 @@ export default function Home() {
             <h1 className="text-3xl text-gray-700">One Platform.</h1>
           </div>
           <p className="font-medium text-gray-700">
-            The world&aposs most advanced water organizations trust Aquatic
+            The world&apos;s most advanced water organizations trust Aquatic
             Informatics to achieve higher data integrity, defensibility,
             compliance, timeliness, and reporting.
           </p>
-          <button
+          <Link
+            href="#consultation-form"
             type="button"
             className="bg-sky-600 px-6 py-3 rounded-full text-white font-medium transition-colors hover:bg-sky-700"
           >
             BOOK CONSULTATION
-          </button>
+          </Link>
         </div>
         <div className="w-1/2 flex justify-center">
           <div className="m-auto">
@@ -100,7 +102,7 @@ export default function Home() {
               <p>Book a Free Consultation Unlock better,</p>
               <p>faster decision-making—let us show you how.</p>
             </div>
-            <form className="flex flex-col gap-4">
+            <form id="consultation-form" className="flex flex-col gap-4">
               <div className="flex gap-4">
                 <input
                   className="border rounded-md px-2 py-1 border-sky-500 w-1/2"
