@@ -2,6 +2,17 @@ import { useEffect, useRef, useState } from "react";
 import * as d3 from "d3";
 import { formatDate } from "@/utils/formatDate";
 
+const getUnit = (attribute) => {
+  switch (attribute) {
+    case "volume":
+      return "Hm3";
+    case "o2d":
+      return "%";
+    default:
+      return "mg/L";
+  }
+};
+
 const ComparisonLineChart = ({ selectedRows, months, w = 800, h = 400 }) => {
   const svgRef = useRef();
   const [hoveredMonth, setHoveredMonth] = useState(null);
@@ -13,7 +24,7 @@ const ComparisonLineChart = ({ selectedRows, months, w = 800, h = 400 }) => {
       d3.select(svgRef.current).selectAll("*").remove();
     };
 
-    const margin = { top: 20, right: 30, bottom: 50, left: 60 };
+    const margin = { top: 20, right: 60, bottom: 50, left: 60 };
     const width = w - margin.left - margin.right;
     const height = h - margin.top - margin.bottom;
 
@@ -30,29 +41,68 @@ const ComparisonLineChart = ({ selectedRows, months, w = 800, h = 400 }) => {
       .range([0, width])
       .padding(0.1);
 
-    const y = d3
-      .scaleLinear()
-      .domain([
-        0,
-        d3.max(months, (month) =>
-          d3.max(selectedRows.map((row) => month[row]))
-        ),
-      ])
-      .nice()
-      .range([height, 0]);
+    const yScales = {};
+    const maxValues = {};
+
+    selectedRows.forEach((row) => {
+      const unit = getUnit(row);
+      maxValues[unit] = Math.max(
+        maxValues[unit] || 0,
+        d3.max(months, (month) => month[row])
+      );
+    });
+
+    selectedRows.forEach((row) => {
+      const unit = getUnit(row);
+      if (!yScales[unit]) {
+        yScales[unit] = d3
+          .scaleLinear()
+          .domain([0, maxValues[unit]])
+          .nice()
+          .range([height, 0]);
+      }
+    });
 
     const line = d3
       .line()
       .x((_, i) => x(months[i].month) + x.bandwidth() / 2)
-      .y((d, i) => y(d));
+      .y((d, i, rows) => yScales[getUnit(rows[i])](d));
 
     const xAxis = d3.axisBottom(x).tickFormat((d) => formatDate(d));
-    const yAxis = d3.axisLeft(y);
 
     svg.append("g").attr("transform", `translate(0,${height})`).call(xAxis);
-    svg.append("g").call(yAxis);
+
+    const yAxisRightOffset = 40;
+
+    Object.keys(yScales).forEach((unit, index) => {
+      const yAxis = d3.axisLeft(yScales[unit]).ticks(5);
+      const yAxisGroup =
+        index === 0
+          ? svg.append("g")
+          : svg
+              .append("g")
+              .attr(
+                "transform",
+                `translate(${width + yAxisRightOffset * index}, 0)`
+              );
+
+      yAxisGroup.call(yAxis);
+
+      // Add unit labels
+      yAxisGroup
+        .append("text")
+        .attr("transform", `rotate(-90)`)
+        .attr("y", index === 0 ? -40 : 40)
+        .attr("x", -height / 2)
+        .attr("dy", "1em")
+        .attr("fill", "black")
+        .attr("text-anchor", "middle")
+        .attr("font-size", "12px")
+        .text(unit);
+    });
 
     selectedRows.forEach((paramId) => {
+      const unit = getUnit(paramId);
       const paramData = months.map((month) => month[paramId]);
       svg
         .append("path")
@@ -60,7 +110,10 @@ const ComparisonLineChart = ({ selectedRows, months, w = 800, h = 400 }) => {
         .attr("fill", "none")
         .attr("stroke", "steelblue")
         .attr("stroke-width", 1.5)
-        .attr("d", line);
+        .attr(
+          "d",
+          line.y((d, i) => yScales[unit](d))
+        );
     });
 
     const tooltip = svg
@@ -95,8 +148,8 @@ const ComparisonLineChart = ({ selectedRows, months, w = 800, h = 400 }) => {
           setHoveredMonth(month);
           tooltip.attr(
             "transform",
-            `translate(${x(month.month)}, ${y(
-              d3.max(selectedRows.map((row) => month[row]))
+            `translate(${x(month.month)}, ${yScales[getUnit(selectedRows[0])](
+              month[selectedRows[0]]
             )})`
           );
           tooltipTexts.forEach((text, i) => {
