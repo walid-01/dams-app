@@ -177,7 +177,7 @@ export default function Home() {
               </label>
               <p className="text-xs">
                 By submitting, I confirm that I have reviewed and agree with the
-                Aquatic Informatics&apos Privacy Policy, including my personal
+                Aquatic Informatics&apos; Privacy Policy, including my personal
                 data privacy choices as outlined in the “Your Privacy Choices”
                 section.
               </p>

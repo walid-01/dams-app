@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import YouTube from "react-youtube";
 
 const Navbar = () => {
   return (
@@ -35,6 +36,29 @@ const Navbar = () => {
           >
             BOOK CONSULTATION
           </Link>
+          {/* You can open the modal using document.getElementById('ID').showModal() method */}
+          <button
+            className="btn"
+            onClick={() => document.getElementById("my_modal_3").showModal()}
+          >
+            How To Use
+          </button>
+          <dialog id="my_modal_3" className="modal">
+            <div className="modal-box max-w-none w-1/2 h-1/2">
+              <form method="dialog">
+                {/* if there is a button in form, it will close the modal */}
+                <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">
+                  ✕
+                </button>
+              </form>
+              <h3 className="font-bold text-lg mb-4">
+                Watch this video to get familiar with the website!
+              </h3>
+              <div className="mx-auto size-fit">
+                <YouTube className="w-full h-full" videoId="dQw4w9WgXcQ" />
+              </div>
+            </div>
+          </dialog>
         </div>
       </div>
     </nav>
