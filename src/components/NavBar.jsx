@@ -27,10 +27,6 @@ const Navbar = () => {
               <Link href="/dams">Dams</Link>
               <span className="absolute w-full h-0.5 bg-white bottom-0 left-0 transform scale-x-0 transition-transform group-hover:scale-x-100"></span>
             </li>
-            <li className="text-white font-medium relative group">
-              <Link href="/about">About</Link>
-              <span className="absolute w-full h-0.5 bg-white bottom-0 left-0 transform scale-x-0 transition-transform group-hover:scale-x-100"></span>
-            </li>
           </ul>
           <Link
             href="/#consultation-form"
