@@ -127,6 +127,7 @@ const DamComparisonLineChart = ({
           .style("text-anchor", "middle")
           .attr("font-size", "12px")
           .attr("font-weight", "bold")
+          .attr("fill", index === 0 ? "steelblue" : "red") // Set color based on the line color
     );
 
     svg

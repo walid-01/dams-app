@@ -4,14 +4,18 @@ import { formatDate } from "@/utils/formatDate";
 
 const getUnit = (attribute) => {
   switch (attribute) {
-    case "volume":
-      return "Hm3";
+    // case "volume":
+    //   return "Hm3";
     case "o2d":
       return "%";
+    // case "ph":
+    //   return "";
     default:
       return "mg/L";
   }
 };
+
+const colors = d3.schemeCategory10; // D3's category10 color scheme for up to 10 lines
 
 const ComparisonLineChart = ({ selectedRows, months, w = 800, h = 400 }) => {
   const svgRef = useRef();
@@ -83,7 +87,7 @@ const ComparisonLineChart = ({ selectedRows, months, w = 800, h = 400 }) => {
               .append("g")
               .attr(
                 "transform",
-                `translate(${width + yAxisRightOffset * index}, 0)`
+                `translate(${width + yAxisRightOffset * (index - 1)}, 0)`
               );
 
       yAxisGroup.call(yAxis);
@@ -92,23 +96,23 @@ const ComparisonLineChart = ({ selectedRows, months, w = 800, h = 400 }) => {
       yAxisGroup
         .append("text")
         .attr("transform", `rotate(-90)`)
-        .attr("y", index === 0 ? -40 : 40)
-        .attr("x", -height / 2)
+        .attr("y", index === 0 ? -40 : yAxisRightOffset)
+        .attr("x", index === 0 ? -height / 2 : -height / 2)
         .attr("dy", "1em")
-        .attr("fill", "black")
         .attr("text-anchor", "middle")
+        .attr("fill", "black")
         .attr("font-size", "12px")
         .text(unit);
     });
 
-    selectedRows.forEach((paramId) => {
+    selectedRows.forEach((paramId, index) => {
       const unit = getUnit(paramId);
       const paramData = months.map((month) => month[paramId]);
       svg
         .append("path")
         .datum(paramData)
         .attr("fill", "none")
-        .attr("stroke", "steelblue")
+        .attr("stroke", colors[index % colors.length])
         .attr("stroke-width", 1.5)
         .attr(
           "d",
@@ -121,14 +125,16 @@ const ComparisonLineChart = ({ selectedRows, months, w = 800, h = 400 }) => {
       .attr("class", "tooltip")
       .style("display", "none");
 
-    const tooltipTexts = selectedRows.map((row, index) =>
-      tooltip
-        .append("text")
-        .attr("x", 0)
-        .attr("y", (index + 1) * 20) // Adjusted y position
-        .style("text-anchor", "middle")
-        .attr("font-size", "12px")
-        .attr("font-weight", "bold")
+    const tooltipTexts = selectedRows.map(
+      (row, index) =>
+        tooltip
+          .append("text")
+          .attr("x", 0)
+          .attr("y", (index + 1) * 20) // Adjusted y position
+          .style("text-anchor", "middle")
+          .attr("font-size", "12px")
+          .attr("font-weight", "bold")
+          .attr("fill", colors[index % colors.length]) // Match text color with line color
     );
 
     svg
