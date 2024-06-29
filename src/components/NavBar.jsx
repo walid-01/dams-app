@@ -55,7 +55,7 @@ const Navbar = () => {
                 Watch this video to get familiar with the website!
               </h3>
               <div className="mx-auto size-fit">
-                <YouTube className="w-full h-full" videoId="dQw4w9WgXcQ" />
+                <YouTube className="w-full h-full" videoId="GJXyFw9bS28" />
               </div>
             </div>
           </dialog>
